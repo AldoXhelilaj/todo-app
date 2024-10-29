@@ -1,0 +1,60 @@
+<div class="todo-app">
+    <h1 class="app-title">Todo App</h1>
+  
+    <div class="input-section">
+      <input
+        [(ngModel)]="newTodo"
+        placeholder="What needs to be done?"
+        class="todo-input"
+      />
+      <select [(ngModel)]="priority" class="priority-select">
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+      <button (click)="addTodo()" class="add-button">Add</button>
+    </div>
+  
+    <h2 class="todo-count">{{ todosCount() }} todos</h2>
+  
+    <h3  class="warning-message" *ngIf="(auth.isAuthenticated$ | async) === false">Please Login</h3>
+    <ul class="todo-list">
+      <li
+        *ngFor="let todo of todos(); let i = index"
+        [ngClass]="{ completed: todo.completed }"
+        class="todo-item"
+      >
+        <span *ngIf="!todo.editing" class="todo-title">
+          {{ todo.title }} -
+          <span class="badge" [ngClass]="{
+            'badge-high': todo.priority === 'high',
+            'badge-medium': todo.priority === 'medium',
+            'badge-low': todo.priority === 'low'
+          }">
+            {{ todo.priority | titlecase }}
+          </span>
+          
+        </span>
+  
+        <input
+          *ngIf="todo.editing"
+          [(ngModel)]="todo.title"
+          placeholder="Edit todo"
+     
+          (keyup.enter)="saveEdit(todo)"
+          class="edit-input"
+        />
+  
+        <div class="button-group">
+          <button (click)="removeTodo(todo)" class="remove-button">Remove</button>
+          <button (click)="toggleTodoCompletion(todo)" class="complete-button">
+            Completed
+          </button>
+          <button *ngIf="!todo.editing" (click)="editTodo(todo)" class="edit-button">Edit</button>
+          <button *ngIf="todo.editing" (click)="saveEdit(todo)" class="save-button">Save</button>
+          <button *ngIf="todo.editing" (click)="cancelEdit(todo)" class="cancel-button">Cancel</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
