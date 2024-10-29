@@ -1,0 +1,12 @@
+{
+  "domain": "dev-xkp8v214xycxwk2f.us.auth0.com",
+  "clientId": "ZlGNI953zEaMolkWQ1Vmjv9klrmksC4V",
+  "useRefreshTokens" : true,
+  "authorizationParams": {
+    "audience": "https://dev-xkp8v214xycxwk2f.us.auth0.com/api/v2/"
+  },
+  "cacheLocation": "localstorage",
+  "apiUri": "https://todo-app-coral-alpha-92.vercel.app",
+  "appUri": "https://todo-app-coral-alpha-92.vercel.app"
+
+}

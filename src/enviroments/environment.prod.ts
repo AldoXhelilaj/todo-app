@@ -2,7 +2,7 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import config from '../auth_config.json';
+import config from '../auth_config_prod.json';
 
 const { domain, clientId, authorizationParams: { audience }, apiUri } = config as {
   domain: string;
