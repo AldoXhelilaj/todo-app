@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "src/main.ts",
+        "use": "@vercel/node"
+      }
+    ],
+    "scripts": {
+      "build": "ng build --configuration production"
+    },
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "/api-server.js"
+      }
+    ]
+  }
+  

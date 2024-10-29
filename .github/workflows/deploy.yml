@@ -21,11 +21,15 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Build the Angular project
-      run: npm run build
+
 
     - name: Install Angular CLI
       run: npm install -g @angular/cli
+
+
+    - name: Build the Angular project
+      run: npm run build
+
 
     - name: Build the Angular project for production
       run: ng build --configuration production
