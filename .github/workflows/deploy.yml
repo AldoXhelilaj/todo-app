@@ -24,6 +24,10 @@ jobs:
     - name: Build the Angular project
       run: npm run build
 
+    - name: Build the Angular project for production
+      run: ng build --configuration production
+
+
     - name: Deploy Angular frontend to Vercel
       env:
         VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
