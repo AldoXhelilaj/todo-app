@@ -1,27 +1,37 @@
-# TodoAppAngular
+# Todo App Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
+## Overview
 
-## Development server
+Todo App Angular is a full-stack application built with Angular for the frontend and Node.js for the backend. It allows users to create, read, update, and delete tasks in a simple and intuitive interface. The application utilizes Auth0 for authentication and MongoDB for data storage.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- User authentication using Auth0
+- Create, read, update, and delete (CRUD) tasks
+- Responsive design for mobile and desktop
+- Server-side rendering support
+- Environment configuration using `.env` files
+- CORS support for API requests
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
+- **Frontend**: Angular 18.x
+- **Backend**: Node.js with Express
+- **Database**: MongoDB with Mongoose
+- **Authentication**: Auth0
+- **Testing**: Jasmine and Karma
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Running unit tests
+### Prerequisites
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Make sure you have the following installed on your machine:
 
-## Running end-to-end tests
+- [Node.js](https://nodejs.org/) (version 14 or later)
+- [Angular CLI](https://angular.io/cli) (installed globally)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Clone the Repository
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+git clone https://github.com/yourusername/todo-app-angular.git
+cd todo-app-angular
