@@ -23,19 +23,15 @@ if (
 
 app.use(morgan('dev'));
 app.use(helmet());
-app.use(
-  cors({
-    origin: authConfig.appUri,
-  })
-);
-app.use(express.json()) 
-
-connectDB();
 app.use(cors({
   origin: ['https://todo-app-coral-alpha-92.vercel.app', 'http://localhost:4200'], // Add your Vercel deployment URL and local development URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+app.use(express.json()) 
+
+connectDB();
+
 const checkJwt = auth({
   audience: authConfig.authorizationParams.audience,
   issuerBaseURL: `https://${authConfig.domain}`,
