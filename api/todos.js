@@ -4,7 +4,7 @@ const connectDB = require('../src/db');
 const Todo = require('../todoModel');
 
 const checkJwt = auth({
-  audience: `${process.env.AUTH0_AUDIENCE}`,
+  audience: 'https://dev-xkp8v214xycxwk2f.us.auth0.com/api/v2/',
   issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}`
 });
 
