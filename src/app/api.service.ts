@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import config from '../auth_config.json'
 import { AuthService } from "@auth0/auth0-angular";
 import { BehaviorSubject, Observable, retry, switchMap, take, takeLast } from "rxjs";
+import { environment } from "../environments/environment";
 
 
 
@@ -27,8 +28,7 @@ export class ApiService {
                 const headers = new HttpHeaders({
                     Authorization: `Bearer ${token}`
                 })
-                console.log(headers)
-                return this.http.get(`${config.apiUri}/api/external`, { headers })
+                return this.http.get(`${environment.apiUri}/api/external`, { headers })
             })
         )
     }

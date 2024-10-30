@@ -4,6 +4,7 @@ import { TodoItem } from "./models/todo-models";
 import { from, map, Observable, switchMap, take } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import config from '../auth_config.json'
+import {environment} from '../environments/environment'
 import { response } from "express";
 
 
@@ -26,7 +27,7 @@ export class TodoService {
                 });
                 console.log(token)
 
-                return this.http.post(`${config.apiUri}/api/todos`, todo, { headers });
+                return this.http.post(`${environment.apiUri}/api/todos`, todo, { headers });
             })
         );
     }
@@ -40,7 +41,7 @@ export class TodoService {
                     'Content-Type': 'application/json' // Ensure the content type is set
                 });
 
-                return this.http.get<TodoItem[]>(`${config.apiUri}/api/todos`, { headers });
+                return this.http.get<TodoItem[]>(`${environment.apiUri}/api/todos`, { headers });
             })
         );
     }
@@ -59,7 +60,7 @@ export class TodoService {
         return this.getAuthHeaders().pipe(
             switchMap(({ headers }) => {
                 return this.http.patch<TodoItem>(
-                    `${config.apiUri}/api/todos/${todoId}/toggle`,
+                    `${environment.apiUri}/api/todos/${todoId}/toggle`,
                     {}, // Add empty body as second parameter
                     { headers } // Add headers as third parameter in options object
                 );
@@ -71,7 +72,7 @@ export class TodoService {
         return this.getAuthHeaders().pipe(
             switchMap(({ headers }) => {
                 return this.http.delete<TodoItem>(
-                    `${config.apiUri}/api/todos/${todoId}`,
+                    `${environment.apiUri}/api/todos/${todoId}`,
                     { headers } // Add headers as third parameter in options object
                 );
             })
@@ -87,7 +88,7 @@ export class TodoService {
               'Content-Type': 'application/json'
             });
             return this.http.patch<TodoItem>(
-              `${config.apiUri}/api/todos/${todo._id}/edit`,
+              `${environment.apiUri}/api/todos/${todo._id}/edit`,
               { title: todo.title },
               { headers }
             );

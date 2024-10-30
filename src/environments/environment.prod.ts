@@ -33,6 +33,7 @@ export const environment = {
   httpInterceptor: {
     allowedList: [`${apiUri}/*`],
   },
+  apiUri: 'https://todo-app-coral-alpha-92.vercel.app'
 };
 /*
  * For easier debugging in development mode, you can import the following file

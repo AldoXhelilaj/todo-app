@@ -33,6 +33,7 @@ export const environment = {
   httpInterceptor: {
     allowedList: [`${apiUri}/*`],
   },
+  apiUri: 'http://localhost:3001'
 };
 /*
  * For easier debugging in development mode, you can import the following file

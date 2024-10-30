@@ -43,7 +43,6 @@ const checkJwt = auth({
 
 app.get('/api/external', checkJwt, (req, res) => {
 
-console.log(req.auth.payload.sub)
   res.send({
     msg: 'Your access token was successfully validated!',
   });
@@ -69,7 +68,6 @@ app.get('/api/todos', checkJwt, async (req, res) => {
 
 app.post('/api/todos', checkJwt, async (req, res) => {
   const userId = req.auth.payload.sub;
-  console.log(req.body.id)
   const newTodo = new Todo({
     title: req.body.title,
     completed: req.body.completed,
