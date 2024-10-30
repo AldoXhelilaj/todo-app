@@ -1,9 +1,7 @@
-// api/todos.js
 const cors = require('cors');
 const { auth } = require('express-oauth2-jwt-bearer');
 const connectDB = require('../src/db');
 const Todo = require('../todoModel');
-
 
 const checkJwt = auth({
   audience: `${process.env.AUTH0_AUDIENCE}`,
@@ -12,48 +10,51 @@ const checkJwt = auth({
 
 // CORS configuration
 const corsOptions = {
-    origin: ['https://todo-app-coral-alpha-92.vercel.app','http://localhost:4200'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+  origin: ['https://todo-app-coral-alpha-92.vercel.app', 'http://localhost:4200'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 
 // Main handler for the API
 const handler = async (req, res) => {
-    try {
-        await connectDB(); // Ensure DB connection is established
+  try {
+    await connectDB(); // Ensure DB connection is established
 
-        cors(corsOptions)(req, res, async () => {
-            checkJwt(req, res, async () => {
-                const userId = req.auth.payload.sub;
-                const path = req.url.split('?')[0]; // Get path without query params
-                const method = req.method;
-                console.log(userId)
+    cors(corsOptions)(req, res, async () => {
+      checkJwt(req, res, async () => {
+        const userId = req.auth?.payload?.sub;
+        if (!userId) {
+          return res.status(401).json({ error: 'Unauthorized' });
+        }
 
-                try {
-                    if (path === '/api/todos' && method === 'GET') {
-                        const todos = await Todo.find({ userId });
-                        return res.json(todos);
-                    }
+        const path = req.url.split('?')[0]; // Get path without query params
+        const method = req.method;
 
-                    if (path === '/api/todos' && method === 'POST') {
-                        const newTodo = new Todo(req.body);
-                        await newTodo.save();
-                        return res.status(201).json(newTodo);
-                    }
+        try {
+          if (path === '/api/todos' && method === 'GET') {
+            const todos = await Todo.find({ userId });
+            return res.json(todos);
+          }
 
-                    // Handle other routes...
+          if (path === '/api/todos' && method === 'POST') {
+            const newTodo = new Todo({ ...req.body, userId });
+            await newTodo.save();
+            return res.status(201).json(newTodo);
+          }
 
-                    return res.status(404).json({ error: "Not Found" });
-                } catch (error) {
-                    console.error('Error processing request:', error);
-                    return res.status(500).json({ error: 'Internal server error' });
-                }
-            });
-        });
-    } catch (error) {
-        console.error('Database connection failed:', error);
-        return res.status(500).json({ error: 'Failed to connect to database' });
-    }
+          // Handle other routes...
+
+          return res.status(404).json({ error: 'Not Found' });
+        } catch (error) {
+          console.error('Error processing request:', error);
+          return res.status(500).json({ error: 'Internal server error' });
+        }
+      });
+    });
+  } catch (error) {
+    console.error('Database connection failed:', error);
+    return res.status(500).json({ error: 'Failed to connect to database' });
+  }
 };
 
 module.exports = handler;
