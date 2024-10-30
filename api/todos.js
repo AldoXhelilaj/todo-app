@@ -22,10 +22,12 @@ const handler = async (req, res) => {
 
     cors(corsOptions)(req, res, async () => {
       checkJwt(req, res, async () => {
+
+        if (!req.auth || !req.auth.payload) {
+          return res.status(401).json({ error: 'Unauthorized: No valid token provided' });
+      }
         const userId = req.auth?.payload?.sub;
-        if (!userId) {
-          return res.status(401).json({ error: 'Unauthorized' });
-        }
+        
 
         const path = req.url.split('?')[0]; // Get path without query params
         const method = req.method;
