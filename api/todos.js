@@ -6,7 +6,7 @@ const Todo = require('../todoModel');
 
 
 const checkJwt = auth({
-  audience: 'https://dev-xkp8v214xycxwk2f.us.auth0.com/api/v2/',
+  audience: `${process.env.AUTH0_AUDIENCE}`,
   issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}`
 });
 
@@ -27,6 +27,7 @@ const handler = async (req, res) => {
                 const userId = req.auth.payload.sub;
                 const path = req.url.split('?')[0]; // Get path without query params
                 const method = req.method;
+                console.log(userId)
 
                 try {
                     if (path === '/api/todos' && method === 'GET') {
