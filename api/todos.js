@@ -11,7 +11,7 @@ const checkJwt = auth({
 
 // CORS configuration
 const corsOptions = {
-  origin: [ 'http://localhost:4200'],
+  origin: ['https://todo-app-coral-alpha-92.vercel.app','http://localhost:4200'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
