@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build --configuration production",
     "server:app": "node server.js",
-    "server:api": "node api-server.js",
+    "server:api": "node api/todos.js",
     "watch": "ng build --watch --configuration development",
     "dev": "npm-run-all --parallel start server:api",
     "test": "ng test",
