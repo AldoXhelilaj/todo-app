@@ -1,27 +1,23 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { provideAuth0 } from '@auth0/auth0-angular'; // Ensure you have the correct import
-import { routes } from './app.routes'; // Adjust the import based on your file structure
-import { AuthHttpInterceptor } from '@auth0/auth0-angular'; // Import the interceptor if needed
-import { environment as env } from '../enviroments/environment';
+import { provideAuth0 } from '@auth0/auth0-angular';
+import { routes } from './app.routes';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(), // Provide the HttpClient module
+    provideHttpClient(),
     provideAuth0({
       ...env.auth,
-      httpInterceptor: {
-        ...env.httpInterceptor,
-      },
-      
+      httpInterceptor: env.httpInterceptor, // Use httpInterceptor configuration directly
     }),
-    provideHttpClient(),
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthHttpInterceptor, // Use Auth0's interceptor if you want to add tokens automatically
-      multi: true, // Allow multiple interceptors
+      useClass: AuthHttpInterceptor,
+      multi: true, // Support multiple interceptors
     },
   ],
 };
