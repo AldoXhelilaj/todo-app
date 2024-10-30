@@ -4,7 +4,7 @@
 
 import config from '../auth_config.json';
 
-const { domain, clientId, authorizationParams: { audience }, apiUri } = config as {
+export const { domain, clientId, authorizationParams: { audience }, apiUri } = config as {
   domain: string;
   clientId: string;
   authorizationParams: {

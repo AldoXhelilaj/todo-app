@@ -3,10 +3,10 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { AuthModule, provideAuth0 } from '@auth0/auth0-angular';
 import { ApplicationConfig } from "@angular/core";
-import { environment } from './environments/environment';
+import { apiUri } from './environments/environment';
 
 
-console.log('Environment:', environment.production);
+console.log('Environment:', apiUri);
 
 
 bootstrapApplication(AppComponent, appConfig)
