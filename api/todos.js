@@ -23,6 +23,7 @@ const handler = async (req, res) => {
     await connectDB(); // Ensure DB connection is established
 
     cors(corsOptions)(req, res, async () => {
+      console.log('Received headers:', req.headers); // Debug headers
       checkJwt(req, res, async () => {
 
         if (!req.auth || !req.auth.payload) {

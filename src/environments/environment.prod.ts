@@ -24,7 +24,7 @@ export const environment = {
     authorizationParams: {
       ...(audience && audience !== 'YOUR_API_IDENTIFIER' ? { audience } : null),
       redirect_uri: window.location.origin,
-      scope: 'openid profile email offline_access'
+      scope: 'read:todos write:todos'
     },
 
     useRefreshTokens: true,       // Enable refresh tokens
