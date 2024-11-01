@@ -25,8 +25,8 @@ app.use(morgan('dev'));
 app.use(helmet());
 app.use(express.json()) 
 app.use(cors({
-  origin: ['https://todo-app-coral-alpha-92.vercel.app', 'http://localhost:4200'], // Add your Vercel deployment URL and local development URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: ['https://todo-app-coral-alpha-92.vercel.app', 'http://localhost:4200'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Ensure PATCH is included
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 connectDB();
@@ -80,9 +80,10 @@ app.post('/api/todos', checkJwt, async (req, res) => {
 app.patch('/api/todos/:id/toggle', checkJwt, async (req, res) => {
   try {
     const todoId = req.params.id;
+    const userId = req.auth.payload.sub;
     // Your toggle logic here
     const updatedTodo = await Todo.findByIdAndUpdate(
-        todoId,
+      { _id: todoId, userId },
         [{ $set: { completed: { $not: "$completed" } } }],
         { new: true }
     );
