@@ -4,7 +4,7 @@ const connectDB = require('../src/db');
 const Todo = require('../todoModel');
 
 const checkJwt = auth({
-  audience: 'https://dev-xkp8v214xycxwk2f.us.auth0.com/api/v2/',
+  audience: `${process.env.AUTH0_AUDIENCE}`,
   issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}`
 });
 
@@ -14,6 +14,7 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
+
 
 // Main handler for the API
 const handler = async (req, res) => {
