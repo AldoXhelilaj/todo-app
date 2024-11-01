@@ -3,7 +3,7 @@
   "clientId": "XiRzD8odETOk0UvI3YB3mL80XtGe6HaQ",
   "useRefreshTokens" : true,
   "authorizationParams": {
-    "audience": "https://dev-xkp8v214xycxwk2f.us.auth0.com/api/v2/"
+    "audience": "https://todo-app"
   },
   "cacheLocation": "localstorage",
   "apiUri": "https://todo-app-coral-alpha-92.vercel.app",
