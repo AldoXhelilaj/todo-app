@@ -36,3 +36,7 @@ Make sure you have the following installed on your machine:
 ```bash
 git clone https://github.com/yourusername/todo-app-angular.git
 cd todo-app-angular
+
+### Note
+There is a problem with deploy on production on Vercel (api/todos.js) only the local works api-server.js
+

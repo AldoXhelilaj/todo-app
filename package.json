@@ -5,10 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --configuration production",
-    "server:app": "node server.js",
-    "server:api": "node api/todos.js",
+    "server:app": "node api-server.js",
+    
     "watch": "ng build --watch --configuration development",
-    "dev": "npm-run-all --parallel start server:api",
+    "dev": "npm-run-all --parallel start  server:app",
     "test": "ng test",
     "serve:ssr:todo-app-angular": "node dist/todo-app-angular/server/server.mjs"
   },
