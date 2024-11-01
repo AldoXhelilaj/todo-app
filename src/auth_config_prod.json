@@ -1,6 +1,6 @@
 {
   "domain": "dev-xkp8v214xycxwk2f.us.auth0.com",
-  "clientId": "ZlGNI953zEaMolkWQ1Vmjv9klrmksC4V",
+  "clientId": "XiRzD8odETOk0UvI3YB3mL80XtGe6HaQ",
   "useRefreshTokens" : true,
   "authorizationParams": {
     "audience": "https://dev-xkp8v214xycxwk2f.us.auth0.com/api/v2/"
