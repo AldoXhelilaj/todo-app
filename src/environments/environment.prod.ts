@@ -24,8 +24,7 @@ export const environment = {
     authorizationParams: {
       ...(audience && audience !== 'YOUR_API_IDENTIFIER' ? { audience } : null),
       redirect_uri: window.location.origin,
-      scope: 'read:todos write:todos'
-    },
+      scope: "openid profile email read:todos write:todos offline_access"},
 
     useRefreshTokens: true,       // Enable refresh tokens
     cacheLocation: 'localstorage' as const  // Store tokens in localStorage for persistence
