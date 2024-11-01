@@ -1,6 +1,6 @@
 {
   "domain": "dev-xkp8v214xycxwk2f.us.auth0.com",
-  "clientId": "XiRzD8odETOk0UvI3YB3mL80XtGe6HaQ",
+  "clientId": "ZlGNI953zEaMolkWQ1Vmjv9klrmksC4V",
   "useRefreshTokens" : true,
   "authorizationParams": {
     "audience": "https://todo-app"
