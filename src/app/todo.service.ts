@@ -33,13 +33,19 @@ export class TodoService {
     }
 
     getTodos(): Observable<TodoItem[]> {
-        return this.auth.getAccessTokenSilently().pipe(
+        return this.auth.getAccessTokenSilently({
+            authorizationParams: {
+                audience: 'https://todo-app',
+                scope: 'read:todos write:todos'
+              }
+        }).pipe(
             take(1),
             switchMap(token => {
                 const headers = new HttpHeaders({
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json' // Ensure the content type is set
                 });
+                console.log(token)
 
                 return this.http.get<TodoItem[]>(`${environment.apiUri}/api/todos`, { headers });
             })
