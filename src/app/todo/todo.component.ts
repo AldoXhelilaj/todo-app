@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, effect, OnInit } from '@angular/core';
 import { signal, computed } from '@angular/core';
 import { FormsModule, NgModelGroup } from '@angular/forms';
 import { TodoItem } from '../models/todo-models';
@@ -8,6 +8,7 @@ import { response } from 'express';
 import { first, firstValueFrom } from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
 import { ApiService } from '../api.service';
+import { IntervalService } from '../interval.service';
 
 @Component({
   selector: 'app-todo',
@@ -19,13 +20,24 @@ import { ApiService } from '../api.service';
 })
 export class TodoComponent implements OnInit {
 
-  constructor(private todoService: TodoService, public auth: AuthService, private apiService: ApiService) {
+  constructor(private todoService: TodoService, public auth: AuthService, private apiService: ApiService, private intervalService: IntervalService) {
+    effect(() => {
+      console.log("Todos Count:", this.todosCount())
+    })
   }
 
   ngOnInit(): void {
     this.apiService.isAuthenticatedSync().subscribe(isAuth => {
       if (isAuth) {
         this.loadTodos();
+      }
+    })
+    this.intervalService.customObservable(5).subscribe({
+      next:(count:number) => {
+        console.log("this interval is executed until count is", count)
+      },
+      complete: () => {
+        console.log("this interval is completed at", )
       }
     })
   }
